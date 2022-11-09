@@ -8,9 +8,18 @@ client_credentials_manager = SpotifyClientCredentials(
     client_id=client_id, client_secret=client_secret)
 sp = spotipy.Spotify(client_credentials_manager=client_credentials_manager)
 
-play_list = "https://open.spotify.com/playlist/37i9dQZF1DZ06evO1rVRqp?si=e20f8b3bd52c4427"
+play_list = "https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF?si=30a40fcfc3a74d33"
 items = sp.playlist_tracks(playlist_id=play_list)["items"]
 
 for i in items:
-    artist_info = i["track"]
-    print(f"{i['track']['name']}, {artist_info['artists'][0]['name']}")
+    artist_uri = i['track']['artists'][0]['uri']
+    artist_info = sp.artist(artist_uri)
+    print(f"{i['track']['name']}, {i['track']['artists'][0]['name']}", end=" ")
+    print("(", end="")
+    for i in artist_info['genres']:
+        if len(artist_info['genres']) > 1:
+            print(f"{i}", end=", ")
+        else:
+            print(f"{i}", end="")
+    print(")")
+    print("\n")
