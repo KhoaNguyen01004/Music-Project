@@ -43,7 +43,7 @@ class SpotifyHandler:
             artist_uri = i['track']['artists'][0]['uri']
         return artist_uri
     
-    def get_genres():
+    def get_genres(self):
         #TODO get the genre of the song 
         pass
 
