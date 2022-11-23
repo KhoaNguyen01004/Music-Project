@@ -47,7 +47,7 @@ class SpotifyHandler:
         for i in self.items:
             artist_uri = i['track']['artists'][0]['uri']
         return artist_uri
-    
+
     def get_genres(self) -> list:
         """
         Description:
@@ -66,7 +66,7 @@ class SpotifyHandler:
                 if len(artist_info["genres"]) >= 1:
                     genres.append(z)
         return genres
-    
+
     def to_string(self) -> str:
         """
         Description:
