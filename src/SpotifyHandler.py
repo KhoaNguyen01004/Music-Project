@@ -33,29 +33,47 @@ class SpotifyHandler:
         self.items = self.sp.playlist_tracks(
             playlist_id=self.play_list)["items"]
 
-    def get_author_uri(self):
+    def get_author_uri(self) -> list:
         """
         Description:
         ------------
-        Get the authors uri from the given list of songs."""
+        Get the authors uri from the given list of songs.
+
+        Return:
+        -------
+        A list of authors uri
+        """
         artist_uri = list()
         for i in self.items:
             artist_uri = i['track']['artists'][0]['uri']
         return artist_uri
     
-    def get_genres(self):
-        #TODO get the genre of the song 
-        pass
+    def get_genres(self) -> list:
+        """
+        Description:
+        ------------
+        Get the list of genres of a list of songs
 
-    # for i in items:
-    #     artist_uri = i['track']['artists'][0]['uri']
-    #     artist_info = sp.artist(artist_uri)
-    #     print(f"{i['track']['name']}, {i['track']['artists'][0]['name']}", end=" ")
-    #     print("(", end="")
-    #     for i in artist_info['genres']:
-    #         if len(artist_info['genres']) > 1:
-    #             print(f"{i}", end=", ")
-    #         else:
-    #             print(f"{i}", end="")
-    #     print(")")
-    #     print("\n")
+        Return:
+        -------
+        A list of genres
+        """
+        genres = list()
+        for i in self.items:
+            artist_uri = i['track']['artists'][0]['uri']
+            artist_info = self.sp.artist(artist_uri)
+            for z in artist_info["genres"]:
+                if len(artist_info["genres"]) >= 1:
+                    genres.append(z)
+        return genres
+    
+    def to_string(self) -> str:
+        """
+        Description:
+        ------------
+        Return a list of genre as a string
+        """
+        genres = ""
+        for i in self.get_genres():
+            genres += i + " "
+        return genres
