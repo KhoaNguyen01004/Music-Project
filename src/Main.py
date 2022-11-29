@@ -1,6 +1,6 @@
 import SpotifyHandler
 import WordCloudHandler
-
+import YouTubeHandler
 
 def main():
     sp = SpotifyHandler.SpotifyHandler()
@@ -8,6 +8,10 @@ def main():
         url_link="https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF?si=30a40fcfc3a74d33")
     wc = WordCloudHandler.WordCloudHandler(text=sp.to_string())
     wc.wordcloud_to_img()
+
+    yt = YouTubeHandler.YouTubeHandler()
+    yt.init_playlist()
+    print(yt.plot_playlist())
 
 
 if __name__ == "__main__":
