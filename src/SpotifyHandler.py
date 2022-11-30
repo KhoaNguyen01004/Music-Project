@@ -1,5 +1,7 @@
 import spotipy
 from spotipy.oauth2 import SpotifyClientCredentials
+import operator
+import pandas
 
 
 class SpotifyHandler:
@@ -67,7 +69,30 @@ class SpotifyHandler:
                     genres.append(z)
         return genres
 
-    def to_string(self) -> str:
+    def get_most_poplar_genre(self, genre_list: list) -> str:
+        """
+        Description:
+        ------------
+        This method get the name of the most popular genre from a given genre list
+
+        Return:
+        -------
+        The most popular genre
+        """
+        genres = dict()
+        for i in genre_list:
+            if i not in genres:
+                genres[i] = 1
+            else:
+                genres[i] += 1
+        genres = sorted(genres.items(), key=operator.itemgetter(1))
+        return genres[-1][0]
+
+    def generate_data_frame(self) -> pandas.DataFrame:
+        # TODO generate a data frame containing all information related to the songs
+        pass
+
+    def to_string_genre(self) -> str:
         """
         Description:
         ------------

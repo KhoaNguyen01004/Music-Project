@@ -1,9 +1,4 @@
 
-# Word Documents (Not important)
-*.docx
-
-# Zip files (Not important)
-*.zip
 
 .vscode
 
@@ -12,3 +7,5 @@
 *.png
 
 *.pyc
+
+venv
