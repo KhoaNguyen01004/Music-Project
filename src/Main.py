@@ -1,6 +1,6 @@
 import SpotifyHandler
 import WordCloudHandler
-
+import YouTubeHandler
 
 def main():
     sp = SpotifyHandler.SpotifyHandler()
@@ -9,6 +9,10 @@ def main():
     wc = WordCloudHandler.WordCloudHandler(text=sp.to_string_genre())
     wc.wordcloud_to_img()
     print(sp.get_most_poplar_genre(sp.get_genres()))
+
+    yt = YouTubeHandler.YouTubeHandler()
+    yt.init_playlist()
+    print(yt.plot_playlist())
 
 
 if __name__ == "__main__":
