@@ -99,4 +99,4 @@ class YouTubeHandler:
         plt.xlabel('Video Title')
         plt.ylabel('View Count (in hundred millions)')
         plt.title('Current Popular Songs on YouTube and Their View Counts')
-        plt.show()
+        plt.savefig('img/TrendingSongsInUS.png', bbox_inches = 'tight')
