@@ -1,16 +1,17 @@
-#(pip install google-api-python-client) is needed
+# (pip install google-api-python-client) is needed
 from googleapiclient.discovery import build
 import matplotlib.pyplot as plt
 
+
 class YouTubeHandler:
-    #Youtube api key
+    # Youtube api key
     yt_api_key = 'AIzaSyC9NKG4azgED3XZDhxEhuVz2rjPoQUcZKk'
 
-    #Default playlist(YouTube's The Hit List)
+    # Default playlist(YouTube's The Hit List)
     playlist_id = 'RDCLAK5uy_kmPRjHDECIcuVwnKsx2Ng7fyNgFKWNJFs'
 
     def __init__(self):
-        self.yt = build('youtube', 'v3', developerKey = self.yt_api_key)
+        self.yt = build('youtube', 'v3', developerKey=self.yt_api_key)
 
     def init_playlist(self, id: str = playlist_id):
         """
@@ -19,13 +20,13 @@ class YouTubeHandler:
         This function initialized the playlist.
         """
         nextPageToken = None
-        self.playlist = dict() 
+        self.playlist = dict()
         while True:
             playlist_request = self.yt.playlistItems().list(
-                part= 'snippet',
-                playlistId= id,
-                maxResults= 50,
-                pageToken= nextPageToken
+                part='snippet',
+                playlistId=id,
+                maxResults=50,
+                pageToken=nextPageToken
             )
             self.playlist = playlist_request.execute()
             nextPageToken = self.playlist.get('nextPageToken')
@@ -61,7 +62,7 @@ class YouTubeHandler:
         for item in self.playlist['items']:
             titles.append(item['snippet']['title'])
         return titles
-        
+
     def get_views(self):
         """
         Description:
@@ -75,8 +76,8 @@ class YouTubeHandler:
         views = []
         video_ids = self.get_video_ids()
         video_request = self.yt.videos().list(
-            part= 'statistics',
-            id= ','.join(video_ids)
+            part='statistics',
+            id=','.join(video_ids)
         )
 
         video_response = video_request.execute()
@@ -93,10 +94,14 @@ class YouTubeHandler:
         """
         titles = self.get_titles()
         views = self.get_views()
-        fig, ax = plt.subplots(figsize = (40, 10))
+        fig, ax = plt.subplots(figsize=(40, 10))
         ax.bar(titles, views)
         plt.xticks(rotation=90)
         plt.xlabel('Video Title')
         plt.ylabel('View Count (in hundred millions)')
         plt.title('Current Popular Songs on YouTube and Their View Counts')
+
         plt.savefig('img/TrendingSongsInUS.png', bbox_inches = 'tight')
+
+        plt.show()
+

@@ -5,6 +5,7 @@ class WordCloudHandler:
 
     wc = wordcloud.WordCloud(stopwords=wordcloud.STOPWORDS)
 
+
     def __init__(self, text, type: str = 'normal') -> wordcloud:
         """
         Description:
@@ -27,6 +28,21 @@ class WordCloudHandler:
         """
         filename = '{}/{}'.format('img', filename)
         self.wc.to_file(filename = filename)
+
+    def __init__(self, text: str) -> wordcloud:
+        """
+        Description:
+        ------------
+        Create a wordcloud object with the given text"""
+        self.wc.generate(text=text)
+
+    def wordcloud_to_img(self):
+        """
+        Description:
+        ------------
+        Generate an image of the wordcloud"""
+        self.wc.to_file(filename="wordcloud.png")
+
 
     def add_stop_word(self, word: str):
         """
