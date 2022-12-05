@@ -2,7 +2,7 @@
 
 ## Requirements for this project:
 
-- [ ] JSON processing
+- [X] JSON processing
 - [x] Pandas 
 - [ ] Search Engine components (Ranking, Crawling)
 - [ ] Web scraping
