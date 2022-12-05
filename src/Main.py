@@ -7,7 +7,7 @@ def main():
     sp = SpotifyHandler.SpotifyHandler()
     sp.init_play_list(
         url_link="https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF?si=30a40fcfc3a74d33")
-    wc = WordCloudHandler.WordCloudHandler(text=sp.to_string_genre())
+    wc = WordCloudHandler.WordCloudHandler(text=sp.to_string_genre(), type="normal")
     wc.wordcloud_to_img('wordcloud.png')
     print(sp.get_most_poplar_genre(sp.get_genres()))
 
