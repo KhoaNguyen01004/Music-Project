@@ -102,6 +102,3 @@ class YouTubeHandler:
         plt.title('Current Popular Songs on YouTube and Their View Counts')
 
         plt.savefig('img/TrendingSongsInUS.png', bbox_inches = 'tight')
-
-        plt.show()
-
