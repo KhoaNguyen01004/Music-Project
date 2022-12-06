@@ -1,7 +1,5 @@
 # (pip install google-api-python-client) is needed
 from googleapiclient.discovery import build
-import matplotlib.pyplot as plt
-
 
 class YouTubeHandler:
     # Youtube api key
@@ -85,23 +83,4 @@ class YouTubeHandler:
             video_vc = item['statistics']['viewCount']
             views.append(int(video_vc))
         return views
-
-    def plot_playlist(self):
-        """
-        Description:
-        ------------
-        Plots out the view count of each video in the playlist into a bar graph.
-        """
-        titles = self.get_titles()
-        views = self.get_views()
-        fig, ax = plt.subplots(figsize=(40, 10))
-        ax.bar(titles, views)
-        plt.xticks(rotation=90)
-        plt.xlabel('Video Title')
-        plt.ylabel('View Count (in hundred millions)')
-        plt.title('Current Popular Songs on YouTube and Their View Counts')
-
-        plt.savefig('img/TrendingSongsInUS.png', bbox_inches = 'tight')
-
-        plt.show()
-
+        

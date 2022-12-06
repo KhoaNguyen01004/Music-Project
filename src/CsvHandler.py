@@ -18,7 +18,7 @@ class CsvHandler:
         """
         return self.csv_file['Artist Name'].tolist()
     
-    def get_artist_views(self):
+    def get_views(self):
         """
         Description:
         ------------
@@ -32,4 +32,14 @@ class CsvHandler:
         ------------
         returns the artist name with the associated view count as a dictionary.
         """
-        return dict(zip(self.get_artist(), self.get_artist_views()))
+        return dict(zip(self.get_artist(), self.get_views()))
+
+    def get_track_names(self):
+        """
+        Description:
+        ------------
+        returns the track name.
+        """
+        return self.csv_file['Track Name'].tolist()
+
+    
