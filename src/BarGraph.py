@@ -51,6 +51,5 @@ class BarGraph:
  
         # Show Plot
         Title += '.png'
-        plt.show()
-        plt.savefig(Title)
+        plt.savefig('{}/{}'.format('img', Title))
     
