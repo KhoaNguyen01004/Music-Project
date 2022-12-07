@@ -69,7 +69,7 @@ class SpotifyHandler:
                     genres.append(z)
         return genres
 
-    def get_most_poplar_genre(self, genre_list: list) -> str:
+    def get_most_poplar_genre(self) -> str:
         """
         Description:
         ------------
@@ -80,6 +80,7 @@ class SpotifyHandler:
         The most popular genre
         """
         genres = dict()
+        genre_list = self.get_genres()
         for i in genre_list:
             if i not in genres:
                 genres[i] = 1
