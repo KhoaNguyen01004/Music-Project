@@ -7,6 +7,7 @@ import os
 import BarGraph
 import Spotify_Popularity
 import MatPlotLibHandler
+import WebScrapingHandler
 
 def main():
     # sp = SpotifyHandler.SpotifyHandler()
@@ -33,6 +34,7 @@ def main():
 
     again = True #Determine if the program will continue running or not
     menu = MenuHandler.MenuHandler().default_menu()
+    ws = WebScrapingHandler.WebScrapingHandler()
 
     while(again):
         menu.show_menu()
@@ -40,7 +42,12 @@ def main():
         user = menu.valid_user_input(user=user)
         option = int(user)
         if option == 1:
-            print(sp.get_most_poplar_genre())
+            print(f"The most popular genre globally on Spotify is {sp.get_most_poplar_genre()}")
+            os.system("pause")
+        if option == 2:
+            pass
+        if option == 3:
+            print(f"{ws.most_listened_monthly_spotify()} is the most listened artist on Spotify according to Wikipedia")
             os.system("pause")
         #TODO add more option and what should they do each case make sure to pause the program each case
         else:
