@@ -2,7 +2,7 @@ from matplotlib import pyplot as plt
 
 class BarGraph:
 # Enter the data you are going to use and the title of the graph
-    def init_Creat_BarGraph(self, x_axies, y_axies, Title):
+    def init_Creat_BarGraph(self, x_axies, y_axies, y_lable, Title):
         fig, ax = plt.subplots(figsize =(40, 20))
  
         # Horizontal Bar Plot
@@ -30,7 +30,7 @@ class BarGraph:
         plt.rcParams.update({'font.size': 25})
 
         # Sets the x and y lables
-        ax.set_ylabel('Artists')
+        ax.set_ylabel(y_lable)
         ax.set_xlabel('Popularity(Millions)')
 
         # Add annotation to bars
@@ -51,5 +51,6 @@ class BarGraph:
  
         # Show Plot
         Title += '.png'
-        plt.savefig('{}/{}'.format('img', Title))
+        plt.savefig(Title)
+        plt.show()
     
