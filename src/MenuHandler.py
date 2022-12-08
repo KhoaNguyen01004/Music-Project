@@ -96,12 +96,18 @@ class MenuHandler:
             "What is the most popular genre global (Spotify)?")
         new_menu.add_option("What is the top song in the US (spotify)?")
         new_menu.add_option("Who is the most listened artist on Spotify?")
+        
         new_menu.add_option("Who are the current top artist based on weekly listens(YouTube)?")
         new_menu.add_option("What are the current trending songs in the United States and what is their view counts(YouTube)?")
         new_menu.add_option("What are the top songs for Canada compared to the United States(YouTube)?")
+        
         new_menu.add_option("Who are the top artists on Billboard?")
         new_menu.add_option("How many songs does each top artist have on the Billboard top 200 chart?")
         new_menu.add_option("Is the top streamed song the same as the most played song on the radio, according to billboard?")
+        
+        new_menu.add_option('How popular are the artisits that are in the top 50 playlist\'s?')   
+        new_menu.add_option('How popular are the songs in the top 50 playlist\'s?')
+        new_menu.add_option('What artisits are popular in Spanin and France?')
         #TODO Add more option as you need above!!
         new_menu.add_option("Help")
         new_menu.add_option("Quit")
