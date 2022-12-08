@@ -15,10 +15,17 @@ class SpotifyHandler:
     items = list()
 
     def __init__(self):
+        """
+        Description:
+        ------------
+        Generate a new SpotifyHandler object and initialize a default playlist:
+        - Top 50 Global Playlist(default): https://open.spotify.com/playlist/37i9dQZEVXbLRQDuF5jeBp?si=4d35ac989d9e4ab2
+        """
         self.client_credentials_manager = SpotifyClientCredentials(
             client_id=self.__client_id, client_secret=self.__client_secret)
         self.sp = spotipy.Spotify(
             client_credentials_manager=self.client_credentials_manager)
+        self.init_play_list(self.play_list)
 
     def init_play_list(self, url_link: str):
         """
@@ -89,9 +96,57 @@ class SpotifyHandler:
         genres = sorted(genres.items(), key=operator.itemgetter(1))
         return genres[-1][0]
 
-    def generate_data_frame(self) -> pandas.DataFrame:
-        # TODO generate a data frame containing all information related to the songs
-        pass
+    def generate_data_frame(self, data={"Year": [2015, 2016, 2017, 2018, 2019, 2020, 2021],
+                                        "Users (mm)": [77, 104, 138, 180, 232, 299, 365]}) -> pandas.DataFrame:
+        """
+        Description:
+        ------------
+        Generate a simple data frame the given data with default: {"year": [2015, 2016, 2017, 2018, 2019, 2020, 2021],
+                                    "Users (mm)":[77, 104, 138, 180, 232, 299, 365]}
+        
+        Param:
+        ------
+        data - used to create data frame
+
+        Return:
+        -------
+        The generated DataFrame
+        """
+        pd = pandas.DataFrame(data)
+        return pd
+
+    def top_1_song_usa(self) -> str:
+        """
+        Description:
+        ------------
+        Get the top 1 song in USA in Spotify
+
+        Return:
+        -------
+        The name of the top 1 song if the playlist is not empty
+        """
+        new_playlist = SpotifyHandler()
+        new_playlist.init_play_list(
+            "https://open.spotify.com/playlist/37i9dQZEVXbLRQDuF5jeBp?si=4d35ac989d9e4ab2")
+        if len(new_playlist.items) != 0:
+            return new_playlist.get_songs_name_list()[0]
+        else:
+            return "The playlist is empty"
+
+    def get_songs_name_list(self) -> list:
+        """
+        Description:
+        ------------
+        This method will get the name of every songs in the playlist
+
+        Return:
+        -------
+        A list of song's names
+        """
+        song_names = list()
+        for i in self.items:
+            song_names.append(i["track"]["name"])
+        return song_names
 
     def to_string_genre(self) -> str:
         """
