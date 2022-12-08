@@ -80,8 +80,8 @@ def main():
             os.system("pause")
         if option == 7:
             df = ws.top_songs_to_dataframe('https://www.billboard.com/charts/billboard-global-200/')
-            BillboardHandler.top_200_to_text(df)
-            wc2 = WordCloudHandler.WordCloudHandler('billboard_artists.txt')
+            billboard_artists = BillboardHandler.top_200_to_text(df)
+            wc2 = WordCloudHandler.WordCloudHandler(billboard_artists)
             wc2.wordcloud_to_img(filename="TopBillboardArtists.png")
             wc2.show_wordcloud_img("img/TopBillboardArtists.png")
             os.system("pause")
@@ -89,9 +89,7 @@ def main():
             df = ws.top_songs_to_dataframe('https://www.billboard.com/charts/billboard-global-200/')
             dups = BillboardHandler.number_of_songs_artist_has(df)
             graph = BarGraph.BarGraph()
-            graph.init_Creat_BarGraph(dups.index, dups, 'Artist Song Counts')
-            wc = WordCloudHandler.WordCloudHandler("test")
-            wc.show_wordcloud_img("img/Artist Song Counts.png")
+            graph.init_Creat_BarGraph(dups.index[0:20], dups[0:20], 'Artists', 'Artist Song Counts in Billboard Top 20')
             os.system("pause")
         if option == 9:
             BillboardHandler.compare_streams_to_radio()
