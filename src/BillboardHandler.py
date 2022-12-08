@@ -7,10 +7,11 @@ from bs4 import BeautifulSoup
     #    Converts pandas database of billboard rankings into a text file
     #
 def top_200_to_text(df):
-    with open('billboard_artists.txt', 'w') as f:
-        for artist in df['artists']:
-            f.write(artist.replace(' ','-') + '\n')
-    f.close()
+    billboard_artists = str()
+    for artists in df['artists']:
+        billboard_artists += artists.replace(' ', '-') + "\n"
+    print(billboard_artists)
+    return billboard_artists
 
 
       #  Returns database showing number of songs each artist had on billboard charts
