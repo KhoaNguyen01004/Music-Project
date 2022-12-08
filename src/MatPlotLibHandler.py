@@ -53,6 +53,16 @@ class MatPlotLibHandler:
                     bbox_inches='tight')
         plt.close()
 
+        def plot_three(self, graph_file_name, x, y, title, x_label, y_label):
+            fig, ax = plt.subplots(figsize=(40, 10))
+            ax.bar(x, y)
+            plt.xticks(rotation=90)
+            plt.xlabel(x_label)  # Video Title
+            plt.ylabel(y_label)  # View Count (in hundred millions)
+            # Current Popular Songs on YouTube and Their View Counts
+            plt.title(title)
+            plt.savefig(graph_file_name)
+            plt.close()
 
 class SpotifyPlot():
     """My own plot for spotify"""
