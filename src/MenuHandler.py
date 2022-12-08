@@ -75,7 +75,7 @@ class MenuHandler:
 
     def print_help(self):
         os.system("cls")
-        print("Type only integer to select your option")
+        print("Type only integer number to select your option. We will display the answer according to the option you entered")
         os.system("pause")
         os.system("cls")
         self.show_menu()
