@@ -96,6 +96,27 @@ def main():
         if option == 9:
             BillboardHandler.compare_streams_to_radio()
             os.system("pause")
+        if option == 10:
+            Sopt_Pop = Spotify_Popularity.SpotifyPopularity()
+            artist_Popularity_US = Sopt_Pop.get_Artist_Pop("https://open.spotify.com/playlist/37i9dQZEVXbLRQDuF5jeBp")
+            bg = BarGraph.BarGraph()
+            bg.init_Creat_BarGraph(artist_Popularity_US['Artist Name'],artist_Popularity_US['Artist Popularity'],'Artists', "Artist Popularity Top 50 US")
+            os.system("pause")
+        if option == 11:
+            Sopt_Pop = Spotify_Popularity.SpotifyPopularity()
+            track_PopularityUS = Sopt_Pop.get_Track_Pop("https://open.spotify.com/playlist/37i9dQZEVXbLRQDuF5jeBp")
+            bg = BarGraph.BarGraph()
+            bg.init_Creat_BarGraph(track_PopularityUS['Track Name'],track_PopularityUS['Track Popularity'],'Tracks' ,"Track Popularity Top 50 US")
+            os.system("pause")
+        if option == 12:
+            Sopt_Pop = Spotify_Popularity.SpotifyPopularity()
+            bg = BarGraph.BarGraph()
+            artist_Popularity_France = Sopt_Pop.get_Artist_Pop('https://open.spotify.com/playlist/37i9dQZEVXbIPWwFssbupI')
+            bg.init_Creat_BarGraph(artist_Popularity_France['Artist Name'],artist_Popularity_France['Artist Popularity'],'Artists', "Artist Popularity Top 50 in France")
+
+            artist_Popularity_Spain = Sopt_Pop.get_Artist_Pop('https://open.spotify.com/playlist/37i9dQZEVXbNFJfN1Vw8d9')
+            bg.init_Creat_BarGraph(artist_Popularity_Spain['Artist Name'],artist_Popularity_Spain['Artist Popularity'],'Artists',"Artist Popularity Top 50 in Sapin")
+            os.system("pause")
         # TODO add more option and what should they do each case make sure to pause the program each case
         else:
             if option == len(menu.menu) - 1:
