@@ -32,10 +32,12 @@ def main():
         url_link="https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF?si=30a40fcfc3a74d33")
 
     yt = YouTubeHandler.YouTubeHandler()
+    yt.init_playlist()
 
     again = True  # Determine if the program will continue running or not
     menu = MenuHandler.MenuHandler().default_menu()
     ws = WebScrapingHandler.WebScrapingHandler()
+    mp = MatPlotLibHandler.MatPlotLibHandler()
 
     while (again):
         menu.show_menu()
@@ -56,18 +58,40 @@ def main():
             print(
                 f"{ws.most_listened_monthly_spotify()} is the most listened artist on Spotify according to Wikipedia")
             os.system("pause")
-        if option == 47:
+        if option == 4:
+            yt_ta_csv = CsvHandler.CsvHandler(file_name = 'youtube-charts-top-artists-global-weekly-2022-11-24.csv')
+            yt_wc = WordCloudHandler.WordCloudHandler(text= yt_ta_csv.get_artist_with_views(), type = 'freq')
+            yt_wc.wordcloud_to_img('YoutubeTopArtist.png')
+            yt_wc.show_wordcloud_img('img\YoutubeTopArtist.png')
+            os.system("pause")
+        if option == 5:
+            yt_x_label = 'Video Title'
+            yt_y_label = 'View Count (in hundred millions)'
+            mp.plot('Trending Songs In US On Youtube.png', yt.get_titles(), yt.get_views(), 'Current Popular Songs on YouTube and Their View Counts', yt_x_label, \
+            yt_y_label)
+            os.system("pause")
+        if option == 6:
+            yt_x_label = 'Video Title'
+            yt_y_label = 'View Count (in hundred millions)'
+            ytca_csv = CsvHandler.CsvHandler(file_name = 'youtube-charts-top-songs-ca-weekly-2022-12-01.csv')
+            ytus_csv = CsvHandler.CsvHandler(file_name = 'youtube-charts-top-songs-us-weekly-2022-12-01.csv')
+            mp.plot_two('Canada and U.S. Comparison of Top Songs on Youtube.png', ytca_csv.get_track_names(), ytca_csv.get_views(), ytus_csv.get_track_names(), \
+            ytus_csv.get_views(), ['Canada', 'United States'], 'Comparison of Top Songs on Youtube Canada Vs. United States', yt_x_label, yt_y_label)
+            os.system("pause")
+        if option == 7:
             df = ws.top_songs_to_dataframe('https://www.billboard.com/charts/billboard-global-200/')
             BillboardHandler.top_200_to_text(df)
             wc2 = WordCloudHandler.WordCloudHandler('billboard_artists.txt')
             wc2.wordcloud_to_img(filename="TopBillboardArtists.png")
-            wc2.show_wordcloud_img()
+            wc2.show_wordcloud_img("img/TopBillboardArtists.png")
             os.system("pause")
         if option == 8:
             df = ws.top_songs_to_dataframe('https://www.billboard.com/charts/billboard-global-200/')
             dups = BillboardHandler.number_of_songs_artist_has(df)
             graph = BarGraph.BarGraph()
             graph.init_Creat_BarGraph(dups.index, dups, 'Artist Song Counts')
+            wc = WordCloudHandler.WordCloudHandler("test")
+            wc.show_wordcloud_img("img/Artist Song Counts.png")
             os.system("pause")
         if option == 9:
             BillboardHandler.compare_streams_to_radio()
