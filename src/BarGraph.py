@@ -50,6 +50,7 @@ class BarGraph:
              alpha = 0.7)
  
         # Show Plot
+        plt.show()
         Title += '.png'
         plt.savefig('{}/{}'.format('img', Title))
     

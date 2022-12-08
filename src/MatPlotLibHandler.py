@@ -21,7 +21,7 @@ class MatPlotLibHandler:
         plt.title(title)
         plt.savefig('{}/{}'.format('img', graph_file_name),
                     bbox_inches='tight')
-        plt.close()
+        plt.show()
 
     def plot_two(self, graph_file_name, data_one_x, data_one_y, data_two_x, data_two_y, legend, title, x_label, y_label):
         """
@@ -51,7 +51,7 @@ class MatPlotLibHandler:
         plt.title(title)
         plt.savefig('{}/{}'.format('img', graph_file_name),
                     bbox_inches='tight')
-        plt.close()
+        plt.show()
 
         def plot_three(self, graph_file_name, x, y, title, x_label, y_label):
             fig, ax = plt.subplots(figsize=(40, 10))
