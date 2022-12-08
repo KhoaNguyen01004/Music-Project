@@ -96,7 +96,9 @@ class MenuHandler:
             "What is the most popular genre global (Spotify)?")
         new_menu.add_option("What is the top song in the US (spotify)?")
         new_menu.add_option("Who is the most listened artist on Spotify?")
-
+        new_menu.add_option("Who are the top artists on Billboard?")
+        new_menu.add_option("How many songs does each top artist have on the Billboard top 200 chart?")
+        new_menu.add_option("Is the top streamed song the same as the most played song on the radio, according to billboard?")
         #TODO Add more option as you need above!!
         new_menu.add_option("Help")
         new_menu.add_option("Quit")

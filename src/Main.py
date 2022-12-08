@@ -8,6 +8,7 @@ import BarGraph
 import Spotify_Popularity
 import MatPlotLibHandler
 import WebScrapingHandler
+import BillboardHandler
 
 
 def main():
@@ -54,6 +55,22 @@ def main():
         if option == 3:
             print(
                 f"{ws.most_listened_monthly_spotify()} is the most listened artist on Spotify according to Wikipedia")
+            os.system("pause")
+        if option == 47:
+            df = ws.top_songs_to_dataframe('https://www.billboard.com/charts/billboard-global-200/')
+            BillboardHandler.top_200_to_text(df)
+            wc2 = WordCloudHandler.WordCloudHandler('billboard_artists.txt')
+            wc2.wordcloud_to_img(filename="TopBillboardArtists.png")
+            wc2.show_wordcloud_img()
+            os.system("pause")
+        if option == 8:
+            df = ws.top_songs_to_dataframe('https://www.billboard.com/charts/billboard-global-200/')
+            dups = BillboardHandler.number_of_songs_artist_has(df)
+            graph = BarGraph.BarGraph()
+            graph.init_Creat_BarGraph(dups.index, dups, 'Artist Song Counts')
+            os.system("pause")
+        if option == 9:
+            BillboardHandler.compare_streams_to_radio()
             os.system("pause")
         # TODO add more option and what should they do each case make sure to pause the program each case
         else:
