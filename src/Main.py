@@ -32,6 +32,7 @@ def main():
         url_link="https://open.spotify.com/playlist/37i9dQZEVXbMDoHDwVN2tF?si=30a40fcfc3a74d33")
 
     yt = YouTubeHandler.YouTubeHandler()
+    yt.init_playlist()
 
     again = True  # Determine if the program will continue running or not
     menu = MenuHandler.MenuHandler().default_menu()
