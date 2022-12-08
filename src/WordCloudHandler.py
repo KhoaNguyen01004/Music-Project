@@ -1,10 +1,11 @@
 import wordcloud
+import matplotlib.pyplot as plt
+import matplotlib.image as pltimg
 
 
 class WordCloudHandler:
 
     wc = wordcloud.WordCloud(stopwords=wordcloud.STOPWORDS)
-
 
     def __init__(self, text, type: str = 'normal') -> wordcloud:
         """
@@ -27,8 +28,21 @@ class WordCloudHandler:
         Default is 'wordcloud.png'.
         """
         filename = '{}/{}'.format('img', filename)
-        self.wc.to_file(filename = filename)
+        self.wc.to_file(filename=filename)
 
+    def show_wordcloud_img(self, fname: str = "img\MostPopularGenreWC.png"):
+        """
+        Description:
+        ------------
+        This method use to show image given the image file path, default is img\MostPopularGenreWC.png
+        """
+        axes = plt.gca()
+
+        img = pltimg.imread(fname)
+        plt.imshow(img)
+        axes.get_xaxis().set_visible(False)
+        axes.get_yaxis().set_visible(False)
+        plt.show()
 
     def add_stop_word(self, word: str):
         """
