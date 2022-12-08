@@ -9,3 +9,7 @@
 *.pyc
 
 venv
+
+#My test files
+test.py
+test.json
